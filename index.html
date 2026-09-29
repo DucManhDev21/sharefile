@@ -114,7 +114,7 @@
                 </div>
                 <div>
                     <span class="text-xl font-bold gradient-text tracking-wide">TDM Share</span>
-                    <span class="hidden sm:inline-block text-xs text-gray-400 bg-gray-800/80 px-2 py-0.5 rounded-full ml-2 border border-gray-700">Telegram API</span>
+                    <span class="hidden sm:inline-block text-xs text-gray-400 bg-gray-800/80 px-2 py-0.5 rounded-full ml-2 border border-gray-700">v3.0</span>
                 </div>
             </a>
 
@@ -141,10 +141,10 @@
             <section class="max-w-3xl mx-auto w-full">
                 <div class="text-center mb-8 space-y-3">
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                        Chia Sẻ File Tốc Độ Cao Với <span class="gradient-text">Custom Link</span>
+                        Chia Sẻ File Tốc Độ Cao Với <span class="gradient-text">Public Link</span>
                     </h1>
                     <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
-                        Tải file trực tuyến qua Telegram Storage miễn phí, tự đặt tiêu đề liên kết đẹp mắt (slug) và chia sẻ tức thì.
+                        Tải file trực tuyến nhanh chóng, tạo liên kết chia sẻ công khai gửi cho bất kỳ ai cũng có thể tải về được ngay.
                     </p>
                 </div>
 
@@ -157,8 +157,8 @@
                         <!-- Custom Link / Title Input -->
                         <div class="space-y-2">
                             <label for="customTitle" class="block text-sm font-medium text-gray-300 flex items-center justify-between">
-                                <span><i class="fa-solid fa-link text-cyan-400 mr-2"></i>Tiêu Đề / Đường Dẫn Tùy Chỉnh</span>
-                                <span class="text-xs text-gray-400 font-normal">Tự động tạo Slug</span>
+                                <span><i class="fa-solid fa-link text-cyan-400 mr-2"></i>Tiêu Đề / Tên File Chia Sẻ</span>
+                                <span class="text-xs text-gray-400 font-normal">Tạo slug tùy chỉnh</span>
                             </label>
                             <input 
                                 type="text" 
@@ -170,7 +170,7 @@
                             <!-- Live Slug Preview -->
                             <div class="flex items-center text-xs text-gray-400 px-1 pt-1 overflow-x-auto">
                                 <span class="whitespace-nowrap">Link preview:</span>
-                                <span id="slugPreview" class="text-cyan-400 font-mono font-medium ml-1.5 whitespace-nowrap">https://tdmdev.vercel.app/...</span>
+                                <span id="slugPreview" class="text-cyan-400 font-mono font-medium ml-1.5 whitespace-nowrap">...</span>
                             </div>
                         </div>
 
@@ -202,7 +202,7 @@
                         <div id="progressWrapper" class="hidden space-y-2 bg-gray-900/60 p-4 rounded-xl border border-gray-800">
                             <div class="flex justify-between text-xs font-semibold">
                                 <span id="progressStatusText" class="text-cyan-400 flex items-center gap-2">
-                                    <i class="fa-solid fa-spinner fa-spin"></i> Đang tải lên Telegram Storage...
+                                    <i class="fa-solid fa-spinner fa-spin"></i> Đang tải file lên đám mây...
                                 </span>
                                 <span id="progressPercent" class="text-gray-300">0%</span>
                             </div>
@@ -230,9 +230,9 @@
                     <div>
                         <h2 class="text-xl font-bold flex items-center gap-2 text-white">
                             <i class="fa-solid fa-fire text-amber-400"></i>
-                            Danh Sách File Vừa Chia Sẻ
+                            Danh Sách File Đã Upload Trên Máy Này
                         </h2>
-                        <p class="text-xs text-gray-400">Các tệp tin được upload mới nhất</p>
+                        <p class="text-xs text-gray-400">Lưu trữ lịch sử các file bạn đã tạo link chia sẻ</p>
                     </div>
                     
                     <!-- Search Input -->
@@ -253,8 +253,8 @@
                 <!-- Empty State View -->
                 <div id="emptyState" class="hidden text-center py-12 glass-card rounded-2xl border border-gray-800">
                     <i class="fa-solid fa-folder-open text-4xl text-gray-600 mb-3"></i>
-                    <p class="text-gray-400 font-medium">Chưa có file nào được chia sẻ!</p>
-                    <p class="text-xs text-gray-500 mt-1">Hãy là người đầu tiên upload file bằng biểu mẫu phía trên.</p>
+                    <p class="text-gray-400 font-medium">Chưa có file nào được tải lên!</p>
+                    <p class="text-xs text-gray-500 mt-1">Hãy upload file bằng biểu mẫu phía trên để tạo link chia sẻ.</p>
                 </div>
             </section>
         </div>
@@ -274,10 +274,10 @@
                     </div>
 
                     <h2 id="dlTitle" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight break-words">
-                        Loading...
+                        Đang đọc dữ liệu file...
                     </h2>
                     <p class="text-xs text-cyan-400 font-mono bg-cyan-950/60 inline-block px-3 py-1 rounded-full border border-cyan-800/50">
-                        <i class="fa-solid fa-hashtag mr-1"></i><span id="dlSlug">slug</span>
+                        <i class="fa-solid fa-shield-halved mr-1"></i>Link Bảo Mật Đã Xác Thực
                     </p>
                 </div>
 
@@ -292,15 +292,15 @@
                         <span id="dlFileSize" class="font-medium text-gray-200">-</span>
                     </div>
                     <div class="flex justify-between items-center text-sm">
-                        <span class="text-gray-400 flex items-center gap-2"><i class="fa-solid fa-clock text-amber-400"></i>Ngày Đăng:</span>
-                        <span id="dlCreatedDate" class="font-medium text-gray-200">-</span>
+                        <span class="text-gray-400 flex items-center gap-2"><i class="fa-solid fa-clock text-amber-400"></i>Trạng Thái:</span>
+                        <span class="font-medium text-emerald-400">Sẵn Sàng Tải Sạch</span>
                     </div>
                 </div>
 
                 <!-- Countdown & Download Action Area -->
                 <div class="space-y-4">
                     <div id="countdownBox" class="text-center py-3 bg-gray-900/50 rounded-xl border border-gray-800">
-                        <p class="text-xs text-gray-400 mb-1">Nút tải sẽ khả dụng sau</p>
+                        <p class="text-xs text-gray-400 mb-1">Nút tải xuống sẽ khả dụng sau</p>
                         <div class="text-3xl font-bold text-cyan-400 font-mono" id="timerCount">5</div>
                     </div>
 
@@ -311,7 +311,7 @@
                         class="w-full gradient-btn py-4 px-6 rounded-2xl text-white font-bold flex items-center justify-center gap-3 shadow-xl opacity-50 cursor-not-allowed transition-all pointer-events-none text-base"
                     >
                         <i class="fa-solid fa-download text-lg"></i>
-                        <span id="dlBtnText">Đang Chuẩn Bị File (5s)...</span>
+                        <span id="dlBtnText">Đang Chuẩn Bị Tệp (5s)...</span>
                     </a>
 
                     <button 
@@ -320,7 +320,7 @@
                         class="w-full bg-gray-800/80 hover:bg-gray-800 text-gray-300 border border-gray-700/80 py-3 px-4 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-all hover:text-white"
                     >
                         <i class="fa-solid fa-copy text-cyan-400"></i>
-                        <span>Sao Chép Liên Kết Chia Sẻ</span>
+                        <span>Sao Chép Liên Kết Chia Sẻ Này</span>
                     </button>
                 </div>
             </div>
@@ -332,14 +332,14 @@
     <footer class="border-t border-gray-800/60 bg-gray-950/80 py-6">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-500 space-y-1">
             <p>© 2026 TDM Share Platform. Nền tảng chia sẻ dữ liệu trực tuyến.</p>
-            <p class="text-gray-600">Powered by Telegram Bot API & Vercel</p>
+            <p class="text-gray-600">Powered by Telegram Cloud API & Vercel Serverless</p>
         </div>
     </footer>
 
-    <!-- JavaScript System -->
+    <!-- Core Script -->
     <script>
         const BASE_CUSTOM_DOMAIN = window.location.origin + window.location.pathname;
-        let allSharedFiles = JSON.parse(localStorage.getItem('tdm_telegram_files') || '[]');
+        let allSharedFiles = JSON.parse(localStorage.getItem('tdm_files_v3') || '[]');
         let currentCountdownInterval = null;
 
         function generateSlug(str) {
@@ -387,18 +387,15 @@
             }, 3500);
         };
 
+        // Router xử lý xem trang chủ hoặc trang download từ URL mã hóa ?data=...
         function handleRouting() {
             const urlParams = new URLSearchParams(window.location.search);
-            let slugParam = urlParams.get('file');
+            const rawData = urlParams.get('data');
 
-            if (!slugParam && window.location.hash) {
-                slugParam = window.location.hash.replace('#/', '').replace('#', '');
-            }
-
-            if (slugParam) {
+            if (rawData) {
                 document.getElementById('homeView').classList.add('hidden');
                 document.getElementById('downloadView').classList.remove('hidden');
-                loadFileBySlug(slugParam);
+                parseAndLoadDownloadPage(rawData);
             } else {
                 document.getElementById('downloadView').classList.add('hidden');
                 document.getElementById('homeView').classList.remove('hidden');
@@ -428,7 +425,7 @@
         customTitleInput.addEventListener('input', () => {
             const raw = customTitleInput.value.trim();
             const slug = generateSlug(raw);
-            slugPreview.textContent = slug ? `${BASE_CUSTOM_DOMAIN}?file=${slug}` : `${BASE_CUSTOM_DOMAIN}...`;
+            slugPreview.textContent = slug ? `${BASE_CUSTOM_DOMAIN}?data=...` : '...';
         });
 
         dropZone.addEventListener('click', () => fileInput.click());
@@ -470,14 +467,13 @@
             }
         }
 
-        // Upload handler qua Vercel -> Telegram
+        // Tải file lên Serverless API -> Telegram
         uploadForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const file = fileInput.files[0];
             const title = customTitleInput.value.trim();
-            const slug = generateSlug(title);
 
-            if (!file || !slug) {
+            if (!file || !title) {
                 showToast('Vui lòng chọn file và nhập tiêu đề hợp lệ!', 'error');
                 return;
             }
@@ -489,15 +485,15 @@
 
             uploadBtn.disabled = true;
             progressWrapper.classList.remove('hidden');
-            progressBar.style.width = '40%';
-            progressPercent.textContent = '40%';
+            progressBar.style.width = '30%';
+            progressPercent.textContent = '30%';
 
             try {
                 const formData = new FormData();
                 formData.append('document', file);
 
-                progressBar.style.width = '70%';
-                progressPercent.textContent = '70%';
+                progressBar.style.width = '60%';
+                progressPercent.textContent = '60%';
 
                 const response = await fetch('/api/upload', {
                     method: 'POST',
@@ -510,31 +506,42 @@
                     progressBar.style.width = '100%';
                     progressPercent.textContent = '100%';
 
+                    // Chuẩn bị payload thông tin gói gọn vào URL cho bất kỳ ai cũng truy cập được
+                    const filePayload = {
+                        id: data.fileId,
+                        name: data.fileName,
+                        size: data.fileSize,
+                        title: title
+                    };
+
+                    const encodedData = btoa(encodeURIComponent(JSON.stringify(filePayload)));
+                    const shareUrl = `${BASE_CUSTOM_DOMAIN}?data=${encodedData}`;
+
+                    // Lưu lịch sử local ở máy người tạo
                     const fileMetadata = {
                         title: title,
-                        slug: slug,
+                        shareUrl: shareUrl,
                         originalName: data.fileName,
-                        downloadUrl: data.downloadUrl,
-                        size: data.fileSize,
                         sizeFormatted: formatBytes(data.fileSize),
                         createdDateStr: new Date().toLocaleDateString('vi-VN')
                     };
 
                     allSharedFiles.unshift(fileMetadata);
-                    localStorage.setItem('tdm_telegram_files', JSON.stringify(allSharedFiles));
+                    localStorage.setItem('tdm_files_v3', JSON.stringify(allSharedFiles));
 
-                    showToast('Tải lên Telegram thành công!', 'success');
+                    showToast('Đã tạo link chia sẻ công khai thành công!', 'success');
 
                     uploadForm.reset();
                     fileSelectText.innerHTML = 'Thả file vào đây hoặc <span class="text-cyan-400 hover:underline">chọn từ thiết bị</span>';
                     fileInfoText.textContent = 'Hỗ trợ mọi định dạng file (Tối đa 2GB)';
-                    slugPreview.textContent = `${BASE_CUSTOM_DOMAIN}...`;
+                    slugPreview.textContent = '...';
                     progressWrapper.classList.add('hidden');
                     uploadBtn.disabled = false;
 
-                    window.location.hash = `#/${slug}`;
+                    // Chuyển hướng trực tiếp đến trang chia sẻ
+                    window.location.href = shareUrl;
                 } else {
-                    throw new Error(data.error || 'Lỗi tải file');
+                    throw new Error(data.error || 'Lỗi khi upload file');
                 }
             } catch (err) {
                 console.error(err);
@@ -555,9 +562,7 @@
             }
 
             emptyState.classList.add('hidden');
-            grid.innerHTML = files.map(file => {
-                const shareUrl = `${BASE_CUSTOM_DOMAIN}?file=${file.slug}`;
-
+            grid.innerHTML = files.map((file, idx) => {
                 return `
                     <div class="glass-card rounded-2xl p-5 flex flex-col justify-between gap-4">
                         <div class="space-y-2">
@@ -568,7 +573,7 @@
                                 <span class="text-[10px] text-gray-500">${file.createdDateStr || ''}</span>
                             </div>
 
-                            <a href="${shareUrl}" class="block group">
+                            <a href="${file.shareUrl}" class="block group">
                                 <h3 class="font-bold text-gray-100 text-base group-hover:text-cyan-400 transition-colors line-clamp-1">
                                     ${escapeHtml(file.title)}
                                 </h3>
@@ -580,18 +585,26 @@
 
                         <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
                             <a 
-                                href="${shareUrl}" 
+                                href="${file.shareUrl}" 
                                 class="flex-1 bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs py-2 px-3 rounded-lg text-center font-medium transition-colors flex items-center justify-center gap-1.5"
                             >
                                 <i class="fa-solid fa-eye text-cyan-400"></i> Xem / Tải
                             </a>
                             
                             <button 
-                                onclick="copyShareUrlDirect('${shareUrl}')"
+                                onclick="copyShareUrlDirect('${file.shareUrl}')"
                                 class="bg-gray-800/80 hover:bg-cyan-900/40 hover:text-cyan-400 text-gray-400 p-2 rounded-lg text-xs transition-all border border-gray-700/50"
-                                title="Sao chép Custom Link"
+                                title="Sao chép Link chia sẻ"
                             >
                                 <i class="fa-solid fa-copy"></i>
+                            </button>
+
+                            <button 
+                                onclick="deleteHistoryItem(${idx})"
+                                class="bg-gray-800/80 hover:bg-rose-900/40 hover:text-rose-400 text-gray-400 p-2 rounded-lg text-xs transition-all border border-gray-700/50"
+                                title="Xóa lịch sử"
+                            >
+                                <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
                     </div>
@@ -599,67 +612,78 @@
             }).join('');
         }
 
+        window.deleteHistoryItem = function(index) {
+            if (confirm("Xóa file này khỏi danh sách lịch sử máy của bạn?")) {
+                allSharedFiles.splice(index, 1);
+                localStorage.setItem('tdm_files_v3', JSON.stringify(allSharedFiles));
+                showToast('Đã xóa khỏi lịch sử!', 'success');
+                renderFileList(allSharedFiles);
+            }
+        };
+
         document.getElementById('searchFileInput')?.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase().trim();
             const filtered = allSharedFiles.filter(f => 
                 f.title.toLowerCase().includes(term) || 
-                f.slug.toLowerCase().includes(term) ||
                 f.originalName.toLowerCase().includes(term)
             );
             renderFileList(filtered);
         });
 
-        function loadFileBySlug(slug) {
+        // Giải mã dữ liệu file từ đường dẫn công khai
+        function parseAndLoadDownloadPage(encodedData) {
             const dlTitle = document.getElementById('dlTitle');
-            const dlSlug = document.getElementById('dlSlug');
             const dlOriginalName = document.getElementById('dlOriginalName');
             const dlFileSize = document.getElementById('dlFileSize');
-            const dlCreatedDate = document.getElementById('dlCreatedDate');
             const mainDlBtn = document.getElementById('mainDlBtn');
             const dlBtnText = document.getElementById('dlBtnText');
             const timerCount = document.getElementById('timerCount');
             const countdownBox = document.getElementById('countdownBox');
 
-            const fileData = allSharedFiles.find(f => f.slug === slug);
+            try {
+                const fileInfo = JSON.parse(decodeURIComponent(atob(encodedData)));
 
-            if (!fileData) {
-                dlTitle.textContent = 'File Không Tồn Tại Hoặc Đã Bị Xóa!';
-                dlSlug.textContent = slug;
+                dlTitle.textContent = fileInfo.title;
+                dlOriginalName.textContent = fileInfo.name;
+                dlOriginalName.title = fileInfo.name;
+                dlFileSize.textContent = formatBytes(fileInfo.size);
+
+                // Đường dẫn tải trực tiếp làm tươi tự động từ Vercel Backend
+                const dynamicDownloadLink = `/api/download?file_id=${fileInfo.id}`;
+
+                // Đếm ngược 5 giây chuẩn bị
+                let secondsLeft = 5;
+                timerCount.textContent = secondsLeft;
+                countdownBox.classList.remove('hidden');
+                
+                mainDlBtn.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+                dlBtnText.textContent = `Đang Chuẩn Bị Tệp (${secondsLeft}s)...`;
+
+                if (currentCountdownInterval) clearInterval(currentCountdownInterval);
+
+                currentCountdownInterval = setInterval(() => {
+                    secondsLeft -= 1;
+                    timerCount.textContent = secondsLeft;
+                    dlBtnText.textContent = `Đang Chuẩn Bị Tệp (${secondsLeft}s)...`;
+
+                    if (secondsLeft <= 0) {
+                        clearInterval(currentCountdownInterval);
+                        countdownBox.classList.add('hidden');
+                        
+                        // Cấp link tải tươi mới
+                        mainDlBtn.href = dynamicDownloadLink;
+                        mainDlBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+                        dlBtnText.textContent = 'TẢI XUỐNG NGAY';
+                    }
+                }, 1000);
+
+            } catch (err) {
+                console.error("Lỗi đọc mã link:", err);
+                dlTitle.textContent = 'Liên Kết Chia Sẻ Không Hợp Lệ Hoặc Đã Bị Hỏng!';
                 dlOriginalName.textContent = 'N/A';
                 dlFileSize.textContent = 'N/A';
-                dlCreatedDate.textContent = 'N/A';
                 countdownBox.classList.add('hidden');
-                return;
             }
-
-            dlTitle.textContent = fileData.title;
-            dlSlug.textContent = fileData.slug;
-            dlOriginalName.textContent = fileData.originalName;
-            dlFileSize.textContent = fileData.sizeFormatted || formatBytes(fileData.size);
-            dlCreatedDate.textContent = fileData.createdDateStr || 'Gần đây';
-
-            let secondsLeft = 5;
-            timerCount.textContent = secondsLeft;
-            countdownBox.classList.remove('hidden');
-            
-            mainDlBtn.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
-            dlBtnText.textContent = `Đang Chuẩn Bị File (${secondsLeft}s)...`;
-
-            if (currentCountdownInterval) clearInterval(currentCountdownInterval);
-
-            currentCountdownInterval = setInterval(() => {
-                secondsLeft -= 1;
-                timerCount.textContent = secondsLeft;
-                dlBtnText.textContent = `Đang Chuẩn Bị File (${secondsLeft}s)...`;
-
-                if (secondsLeft <= 0) {
-                    clearInterval(currentCountdownInterval);
-                    countdownBox.classList.add('hidden');
-                    mainDlBtn.href = fileData.downloadUrl;
-                    mainDlBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
-                    dlBtnText.textContent = 'TẢI XUỐNG NGAY';
-                }
-            }, 1000);
         }
 
         window.copyShareUrlDirect = function(url) {
@@ -668,9 +692,7 @@
         };
 
         window.copyCurrentShareUrl = function() {
-            const slug = document.getElementById('dlSlug').textContent;
-            const fullUrl = `${BASE_CUSTOM_DOMAIN}?file=${slug}`;
-            copyTextToClipboard(fullUrl);
+            copyTextToClipboard(window.location.href);
             showToast('Đã sao chép link chia sẻ!', 'success');
         };
 
@@ -693,7 +715,6 @@
 
         window.addEventListener('load', handleRouting);
         window.addEventListener('popstate', handleRouting);
-        window.addEventListener('hashchange', handleRouting);
     </script>
 </body>
 </html>

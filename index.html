@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CloudShare - Chia Sẻ File Tốc Độ Cao</title>
+  <title>TDM Share - Chia Sẻ File Tốc Tốc Độ Cao</title>
   
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,6 @@
       overflow-x: hidden;
     }
 
-    /* Glassmorphism card utility */
     .glass-panel {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(16px);
@@ -70,7 +69,6 @@
       background: rgba(255, 255, 255, 0.07);
     }
 
-    /* Glowing ambient lighting effects */
     .glow-orb-purple {
       position: absolute;
       width: 500px;
@@ -91,7 +89,6 @@
       z-index: 0;
     }
 
-    /* Neon File Icon Pulse */
     @keyframes neon-pulse {
       0%, 100% {
         filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.4));
@@ -107,25 +104,15 @@
       animation: neon-pulse 3.5s ease-in-out infinite;
     }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0a0712;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0712; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
   </style>
 </head>
 <body class="min-h-screen relative flex flex-col justify-between selection:bg-purple-500 selection:text-white">
 
-  <!-- Ambient background lighting -->
+  <!-- Ambient lighting -->
   <div class="glow-orb-purple -top-20 -left-20"></div>
   <div class="glow-orb-cyan top-1/3 -right-20"></div>
   <div class="glow-orb-purple -bottom-20 left-1/3"></div>
@@ -145,67 +132,59 @@
           <h1 class="text-2xl font-extrabold tracking-tight text-white flex items-center gap-2">
             Cloud<span class="bg-gradient-to-r from-purple-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent">Share</span>
           </h1>
-          <p class="text-xs text-gray-400 font-medium">Lưu trữ & Chia sẻ file không giới hạn</p>
+          <p class="text-xs text-gray-400 font-medium">Lưu trữ & Chia sẻ file tốc độ cao</p>
         </div>
       </a>
 
       <div class="flex items-center gap-3">
         <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Catbox CDN Ready
+          Firebase Storage Active
         </span>
       </div>
     </header>
 
-    <!-- VIEW 1: UPLOAD & RECENT FILES VIEW -->
+    <!-- VIEW 1: UPLOAD VIEW -->
     <main id="uploadView" class="space-y-10">
-      
-      <!-- File Upload Card -->
       <section class="glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden">
         <div class="mb-6">
           <h2 class="text-xl font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-upload text-purple-400"></i> Tải Thẻ File Mới
+            <i class="fa-solid fa-upload text-purple-400"></i> Tải File Mới
           </h2>
-          <p class="text-sm text-gray-400 mt-1">Chọn file bất kỳ từ thiết bị của bạn để tạo đường dẫn chia sẻ tốc độ cao.</p>
+          <p class="text-sm text-gray-400 mt-1">Chọn file từ thiết bị để tạo liên kết chia sẻ trực tiếp.</p>
         </div>
 
         <form id="uploadForm" onsubmit="event.preventDefault();" class="space-y-5">
-          <!-- Inputs Row -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <!-- File Title Input -->
             <div>
               <label class="block text-xs font-semibold text-gray-300 mb-2 uppercase tracking-wider">
                 Tiêu đề file <span class="text-purple-400">*</span>
               </label>
               <div class="relative">
-                <input type="text" id="fileTitleInput" required placeholder="Nhập tên tiêu đề file (VD: Mod Game Siêu Vip)" 
+                <input type="text" id="fileTitleInput" required placeholder="Nhập tên tiêu đề file..." 
                        class="w-full glass-input px-4 py-3 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none">
                 <i class="fa-solid fa-pen text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 text-xs"></i>
               </div>
             </div>
 
-            <!-- Custom Slug Input -->
             <div>
               <label class="block text-xs font-semibold text-gray-300 mb-2 uppercase tracking-wider">
                 Slug Đường Dẫn
               </label>
               <div class="relative">
-                <input type="text" id="fileSlugInput" placeholder="mod-game-sieu-vip" 
+                <input type="text" id="fileSlugInput" placeholder="nhap-slug-tuy-chon" 
                        class="w-full glass-input px-4 py-3 rounded-xl text-sm text-purple-300 font-mono placeholder-gray-500 focus:outline-none">
                 <i class="fa-solid fa-link text-gray-500 absolute right-4 top-1/2 -translate-y-1/2 text-xs"></i>
               </div>
             </div>
           </div>
 
-          <!-- URL Preview Box -->
           <div class="p-3 rounded-xl bg-purple-950/20 border border-purple-500/20 text-xs font-mono flex items-center justify-between text-gray-300 overflow-x-auto">
-            <span class="text-gray-400">Xem trước link chia sẻ:</span>
+            <span class="text-gray-400">Xem trước link:</span>
             <span id="urlPreviewText" class="text-cyan-400 font-bold truncate ml-2">https://domain.com/?file=slug</span>
           </div>
 
-          <!-- Dropzone Container -->
-          <div id="dropzone" 
-               class="border-2 border-dashed border-white/20 hover:border-purple-500/60 transition-all rounded-2xl p-8 text-center cursor-pointer bg-white/[0.01] hover:bg-white/[0.03] group">
+          <div id="dropzone" class="border-2 border-dashed border-white/20 hover:border-purple-500/60 transition-all rounded-2xl p-8 text-center cursor-pointer bg-white/[0.01] hover:bg-white/[0.03] group">
             <input type="file" id="fileInput" class="hidden">
             
             <div id="dropzoneDefault" class="space-y-3">
@@ -215,10 +194,9 @@
               <p class="text-sm text-gray-200 font-medium">
                 Kéo & Thả file vào đây hoặc <span class="text-purple-400 underline decoration-purple-500/50 underline-offset-4 font-semibold">Chọn từ máy tính</span>
               </p>
-              <p class="text-xs text-gray-500">Hỗ trợ tất cả các định dạng tệp tin thông dụng qua Catbox API</p>
+              <p class="text-xs text-gray-500">Hỗ trợ lưu trữ trực tiếp trên Firebase Cloud Storage</p>
             </div>
 
-            <!-- Selected File Display -->
             <div id="selectedFileInfo" class="hidden flex items-center justify-between bg-purple-900/20 p-4 rounded-xl border border-purple-500/30">
               <div class="flex items-center gap-3 overflow-hidden text-left">
                 <div class="w-10 h-10 rounded-lg bg-purple-600/20 text-purple-300 flex items-center justify-center shrink-0">
@@ -235,40 +213,34 @@
             </div>
           </div>
 
-          <!-- Progress Bar Section (Hidden by default) -->
           <div id="progressContainer" class="hidden space-y-2">
             <div class="flex justify-between items-center text-xs">
-              <span id="uploadStatusText" class="text-purple-300 font-medium">Đang tải file lên Catbox.moe...</span>
+              <span id="uploadStatusText" class="text-purple-300 font-medium">Đang tải file lên Cloud Storage...</span>
               <span id="uploadPercentText" class="text-cyan-400 font-bold font-mono">0%</span>
             </div>
             <div class="w-full bg-white/10 h-2.5 rounded-full overflow-hidden p-0.5 border border-white/10">
-              <div id="progressBar" class="bg-gradient-to-r from-purple-500 to-cyan-400 h-full rounded-full w-0 transition-all duration-150 shadow-[0_0_12px_rgba(139,92,246,0.8)]"></div>
+              <div id="progressBar" class="bg-gradient-to-r from-purple-500 to-cyan-400 h-full rounded-full w-0 transition-all duration-150"></div>
             </div>
           </div>
 
-          <!-- Submit Button -->
           <button type="button" id="uploadBtn" 
                   class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold text-base shadow-lg shadow-purple-600/30 hover:shadow-purple-600/50 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
             <i class="fa-solid fa-bolt text-yellow-300"></i> Tải Lên Ngay
           </button>
         </form>
 
-        <!-- Result Box (Displayed after successful upload) -->
-        <div id="resultCard" class="hidden mt-6 pt-6 border-t border-white/10 space-y-4 animate-fade-in">
+        <div id="resultCard" class="hidden mt-6 pt-6 border-t border-white/10 space-y-4">
           <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-3">
             <div class="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg shrink-0">
               <i class="fa-solid fa-circle-check text-xl"></i>
             </div>
             <div class="flex-grow min-w-0">
-              <h4 class="text-sm font-bold text-emerald-400">Tải lên thành công & Đã lưu link!</h4>
-              <p class="text-xs text-gray-300 mt-0.5">File của bạn đã sẵn sàng để chia sẻ.</p>
+              <h4 class="text-sm font-bold text-emerald-400">Tải lên thành công!</h4>
+              <p class="text-xs text-gray-300 mt-0.5">Liên kết chia sẻ file của bạn đã tạo thành công.</p>
               
-              <!-- Copy Box -->
               <div class="mt-3 flex items-center gap-2">
-                <input type="text" id="shareUrlOutput" readonly 
-                       class="w-full bg-slate-950/80 border border-white/15 px-3 py-2 rounded-lg text-xs font-mono text-cyan-300 focus:outline-none">
-                <button type="button" id="copyShareUrlBtn" 
-                        class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 shadow-md">
+                <input type="text" id="shareUrlOutput" readonly class="w-full bg-slate-950/80 border border-white/15 px-3 py-2 rounded-lg text-xs font-mono text-cyan-300 focus:outline-none">
+                <button type="button" id="copyShareUrlBtn" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 shadow-md">
                   <i class="fa-solid fa-copy"></i> Sao Chép
                 </button>
               </div>
@@ -282,48 +254,37 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <i class="fa-solid fa-clock-rotate-left text-cyan-400"></i> Danh Sách File Vừa Chia Sẻ
+              <i class="fa-solid fa-clock-rotate-left text-cyan-400"></i> Danh Sách File Đã Chia Sẻ
             </h3>
-            <p class="text-xs text-gray-400 mt-1">Cập nhật thời gian thực từ Cloud Firestore</p>
+            <p class="text-xs text-gray-400 mt-1">Dữ liệu thời gian thực từ Cloud Firestore</p>
           </div>
 
-          <!-- Search Box -->
           <div class="relative w-full sm:w-64">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm file theo tên..." 
-                   class="w-full glass-input pl-9 pr-4 py-2 rounded-xl text-xs text-white placeholder-gray-400 focus:outline-none">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm file..." class="w-full glass-input pl-9 pr-4 py-2 rounded-xl text-xs text-white placeholder-gray-400 focus:outline-none">
             <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
           </div>
         </div>
 
-        <!-- Files List Container -->
         <div id="recentFilesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- JS dynamic insertion -->
           <div class="col-span-full py-12 text-center text-gray-500">
             <i class="fa-solid fa-circle-notch fa-spin text-2xl text-purple-400 mb-2"></i>
-            <p class="text-xs">Đang tải dữ liệu danh sách file...</p>
+            <p class="text-xs">Đang tải dữ liệu...</p>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- VIEW 2: DOWNLOAD FILE VIEW (Hidden by default, shown if URL has ?file=slug) -->
+    <!-- VIEW 2: DOWNLOAD VIEW -->
     <main id="downloadView" class="hidden min-h-[70vh] flex items-center justify-center py-10">
-      
-      <!-- Download Card -->
       <div id="downloadCardContent" class="glass-panel rounded-3xl p-8 sm:p-12 max-w-xl w-full text-center space-y-8 relative overflow-hidden">
-        
-        <!-- Top Neon Icon -->
         <div class="relative inline-block my-2">
           <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-tr from-purple-600/30 to-cyan-500/30 border border-white/20 flex items-center justify-center mx-auto neon-icon-glow">
             <i id="dlFileExtensionIcon" class="fa-solid fa-file-arrow-down text-4xl sm:text-5xl text-cyan-300"></i>
           </div>
         </div>
 
-        <!-- File Title & Info -->
         <div class="space-y-3">
-          <h2 id="dlTitle" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
-            Đang tải thông tin file...
-          </h2>
+          <h2 id="dlTitle" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">Đang tải thông tin...</h2>
           <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
             <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/20">
               <i class="fa-solid fa-hard-drive mr-1"></i> <span id="dlSize">-- MB</span>
@@ -334,66 +295,52 @@
           </div>
         </div>
 
-        <!-- Action Buttons -->
         <div class="space-y-4 pt-2">
           <a id="dlDirectBtn" href="#" target="_blank" rel="noopener noreferrer" 
-             class="w-full py-4 px-8 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-extrabold text-lg shadow-xl shadow-purple-600/40 hover:shadow-cyan-500/50 transition-all duration-300 flex items-center justify-center gap-3 transform hover:-translate-y-0.5">
+             class="w-full py-4 px-8 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-extrabold text-lg shadow-xl shadow-purple-600/40 transition-all duration-300 flex items-center justify-center gap-3">
             <i class="fa-solid fa-download text-xl"></i> Tải Xuống Ngay
           </a>
 
-          <button type="button" id="backToHomeBtn" 
-                  class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white transition-colors py-2 px-4 rounded-xl hover:bg-white/5">
+          <button type="button" id="backToHomeBtn" class="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white transition-colors py-2 px-4 rounded-xl hover:bg-white/5">
             <i class="fa-solid fa-arrow-left"></i> Quay lại trang chủ
           </button>
         </div>
       </div>
 
-      <!-- 404 Error Card (Hidden unless file slug not found) -->
       <div id="notFoundCard" class="hidden glass-panel rounded-3xl p-8 sm:p-12 max-w-md w-full text-center space-y-6">
         <div class="w-20 h-20 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mx-auto">
           <i class="fa-solid fa-file-circle-xmark text-4xl"></i>
         </div>
         <div class="space-y-2">
           <h3 class="text-xl font-bold text-white">Không Tìm Thấy File</h3>
-          <p class="text-xs text-gray-400">File không tồn tại, đường dẫn không hợp lệ hoặc đã bị dọn dẹp khỏi hệ thống.</p>
+          <p class="text-xs text-gray-400">Đường dẫn không hợp lệ hoặc tập tin đã bị xóa.</p>
         </div>
-        <button type="button" onclick="window.location.href = window.location.pathname;" 
-                class="w-full py-3 px-6 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-bold transition-all">
+        <button type="button" onclick="window.location.href = window.location.pathname;" class="w-full py-3 px-6 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-bold transition-all">
           <i class="fa-solid fa-house mr-1"></i> Trở về trang chủ
         </button>
       </div>
-
     </main>
 
   </div>
 
-  <!-- Footer -->
   <footer class="relative z-10 border-t border-white/10 py-6 text-center text-xs text-gray-500">
-    <p>© 2026 CloudShare Service. Powered by Catbox API & Firebase Cloud Firestore.</p>
+    <p>© 2026 CloudShare Service. Powered by Firebase Cloud Storage & Firestore.</p>
   </footer>
 
-  <!-- Toast Notification Container -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
     <div class="glass-panel bg-slate-900/90 border border-purple-500/40 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3">
       <div class="p-1.5 bg-purple-500/20 text-purple-300 rounded-lg">
         <i class="fa-solid fa-circle-info"></i>
       </div>
-      <span id="toastMessage" class="text-xs font-semibold">Thông báo toast!</span>
+      <span id="toastMessage" class="text-xs font-semibold">Thông báo</span>
     </div>
   </div>
 
-
-  <!-- Firebase JS SDK ES Modules -->
+  <!-- Firebase JS SDK ES Modules (Phiên bản đồng bộ v10.8.0) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { 
-      getFirestore, 
-      collection, 
-      addDoc, 
-      getDocs, 
-      onSnapshot, 
-      query 
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs, onSnapshot, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDPaGLv7R3PrNbi_3OsT_1dcCnqLPPrLq0",
@@ -404,37 +351,23 @@
       appId: "1:50010081443:web:a538f9b9ef258967985716"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const storage = getStorage(app);
     const filesCollection = collection(db, "shared_files");
 
-    // Global application variables
     let selectedFile = null;
     let cachedFilesList = [];
     let isUserEditingSlug = false;
 
-    /**
-     * Convert Vietnamese string to clean URL slug
-     * @param {string} str 
-     * @returns {string}
-     */
     function vietnameseToSlug(str) {
       if (!str) return '';
       let slug = str.toLowerCase().trim();
       slug = slug.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      slug = slug.replace(/[đĐ]/g, 'd');
-      slug = slug.replace(/[^a-z0-9 -]/g, '');
-      slug = slug.replace(/\s+/g, '-');
-      slug = slug.replace(/-+/g, '-');
+      slug = slug.replace(/[đĐ]/g, 'd').replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
       return slug;
     }
 
-    /**
-     * Format byte sizes into readable string
-     * @param {number} bytes 
-     * @returns {string}
-     */
     function formatBytes(bytes) {
       if (!bytes || bytes === 0) return '0 Bytes';
       const k = 1024;
@@ -443,28 +376,17 @@
       return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
-    /**
-     * Toast notification display
-     * @param {string} msg 
-     */
     function showToast(msg) {
       const toast = document.getElementById('toast');
-      const toastMessage = document.getElementById('toastMessage');
-      toastMessage.textContent = msg;
-      
+      document.getElementById('toastMessage').textContent = msg;
       toast.classList.remove('translate-y-20', 'opacity-0');
       toast.classList.add('translate-y-0', 'opacity-100');
-      
       setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-20', 'opacity-0');
       }, 3000);
     }
 
-    /**
-     * Copy text to clipboard safely
-     * @param {string} text 
-     */
     function copyToClipboard(text) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text);
@@ -478,12 +400,9 @@
         document.execCommand('copy');
         document.body.removeChild(textarea);
       }
-      showToast('Đã sao chép đường dẫn vào bộ nhớ tạm!');
+      showToast('Đã sao chép link!');
     }
 
-    /**
-     * Select FontAwesome icon according to file extension
-     */
     function getFileIconClass(filename) {
       const ext = filename ? filename.split('.').pop().toLowerCase() : '';
       if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(ext)) return 'fa-file-image text-emerald-400';
@@ -502,14 +421,11 @@
 
     function updateUrlPreview() {
       const currentSlug = slugInput.value.trim() || 'slug';
-      const baseUrl = window.location.origin + window.location.pathname;
-      urlPreviewText.textContent = `${baseUrl}?file=${currentSlug}`;
+      urlPreviewText.textContent = `${window.location.origin}${window.location.pathname}?file=${currentSlug}`;
     }
 
     titleInput.addEventListener('input', () => {
-      if (!isUserEditingSlug) {
-        slugInput.value = vietnameseToSlug(titleInput.value);
-      }
+      if (!isUserEditingSlug) slugInput.value = vietnameseToSlug(titleInput.value);
       updateUrlPreview();
     });
 
@@ -521,16 +437,9 @@
 
     const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('fileInput');
-    const dropzoneDefault = document.getElementById('dropzoneDefault');
-    const selectedFileInfo = document.getElementById('selectedFileInfo');
-    const selectedFileName = document.getElementById('selectedFileName');
-    const selectedFileSize = document.getElementById('selectedFileSize');
-    const removeFileBtn = document.getElementById('removeFileBtn');
-    const fileIcon = document.getElementById('fileIcon');
 
     dropzone.addEventListener('click', (e) => {
-      if (e.target.closest('#removeFileBtn')) return;
-      fileInput.click();
+      if (!e.target.closest('#removeFileBtn')) fileInput.click();
     });
 
     dropzone.addEventListener('dragover', (e) => {
@@ -538,210 +447,145 @@
       dropzone.classList.add('border-purple-500', 'bg-purple-500/5');
     });
 
-    dropzone.addEventListener('dragleave', () => {
-      dropzone.classList.remove('border-purple-500', 'bg-purple-500/5');
-    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('border-purple-500', 'bg-purple-500/5'));
 
     dropzone.addEventListener('drop', (e) => {
       e.preventDefault();
       dropzone.classList.remove('border-purple-500', 'bg-purple-500/5');
-      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-        handleFileSelect(e.dataTransfer.files[0]);
-      }
+      if (e.dataTransfer.files?.length) handleFileSelect(e.dataTransfer.files[0]);
     });
 
     fileInput.addEventListener('change', () => {
-      if (fileInput.files && fileInput.files.length > 0) {
-        handleFileSelect(fileInput.files[0]);
-      }
+      if (fileInput.files?.length) handleFileSelect(fileInput.files[0]);
     });
 
     function handleFileSelect(file) {
       selectedFile = file;
-      selectedFileName.textContent = file.name;
-      selectedFileSize.textContent = formatBytes(file.size);
-      
-      fileIcon.className = `fa-solid ${getFileIconClass(file.name)} text-lg`;
+      document.getElementById('selectedFileName').textContent = file.name;
+      document.getElementById('selectedFileSize').textContent = formatBytes(file.size);
+      document.getElementById('fileIcon').className = `fa-solid ${getFileIconClass(file.name)} text-lg`;
 
-      dropzoneDefault.classList.add('hidden');
-      selectedFileInfo.classList.remove('hidden');
+      document.getElementById('dropzoneDefault').classList.add('hidden');
+      document.getElementById('selectedFileInfo').classList.remove('hidden');
 
-      // Auto fill title if empty
       if (!titleInput.value.trim()) {
         const nameWithoutExt = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
         titleInput.value = nameWithoutExt;
-        if (!isUserEditingSlug) {
-          slugInput.value = vietnameseToSlug(nameWithoutExt);
-        }
+        if (!isUserEditingSlug) slugInput.value = vietnameseToSlug(nameWithoutExt);
         updateUrlPreview();
       }
     }
 
-    removeFileBtn.addEventListener('click', (e) => {
+    document.getElementById('removeFileBtn').addEventListener('click', (e) => {
       e.stopPropagation();
       selectedFile = null;
       fileInput.value = '';
-      selectedFileInfo.classList.add('hidden');
-      dropzoneDefault.classList.remove('hidden');
+      document.getElementById('selectedFileInfo').classList.add('hidden');
+      document.getElementById('dropzoneDefault').classList.remove('hidden');
     });
 
+    // UPLOAD LOGIC BẰNG FIREBASE STORAGE
     const uploadBtn = document.getElementById('uploadBtn');
     const progressContainer = document.getElementById('progressContainer');
     const progressBar = document.getElementById('progressBar');
     const uploadPercentText = document.getElementById('uploadPercentText');
     const uploadStatusText = document.getElementById('uploadStatusText');
-    const resultCard = document.getElementById('resultCard');
-    const shareUrlOutput = document.getElementById('shareUrlOutput');
-    const copyShareUrlBtn = document.getElementById('copyShareUrlBtn');
 
     uploadBtn.addEventListener('click', async () => {
       const title = titleInput.value.trim();
       let slug = slugInput.value.trim();
 
-      if (!title) {
-        showToast('Vui lòng nhập tiêu đề cho file!');
-        titleInput.focus();
-        return;
-      }
+      if (!title) return showToast('Vui lòng nhập tiêu đề!');
+      if (!selectedFile) return showToast('Vui lòng chọn 1 file!');
+      if (!slug) slug = vietnameseToSlug(title);
 
-      if (!selectedFile) {
-        showToast('Vui lòng chọn 1 file để tải lên!');
-        return;
-      }
-
-      if (!slug) {
-        slug = vietnameseToSlug(title);
-      }
-
-      // Check if slug exists in local cache to prevent duplicate collision
-      const slugExists = cachedFilesList.some(item => item.slug === slug);
-      if (slugExists) {
+      if (cachedFilesList.some(item => item.slug === slug)) {
         slug = `${slug}-${Math.random().toString(36).substring(2, 6)}`;
       }
 
-      // Prepare UI for upload progress
       uploadBtn.disabled = true;
       progressContainer.classList.remove('hidden');
-      resultCard.classList.add('hidden');
-      progressBar.style.width = '0%';
-      uploadPercentText.textContent = '0%';
-      uploadStatusText.textContent = 'Đang khởi tạo kết nối Catbox...';
+      document.getElementById('resultCard').classList.add('hidden');
 
-      // Perform XHR Request to Catbox API
-      const formData = new FormData();
-      formData.append('reqtype', 'fileupload');
-      formData.append('fileToUpload', selectedFile);
+      // Tải lên Firebase Storage với Tiến trình (Resumable Upload)
+      const storagePath = `uploads/${Date.now()}_${selectedFile.name}`;
+      const storageRef = ref(storage, storagePath);
+      const uploadTask = uploadBytesResumable(storageRef, selectedFile);
 
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://catbox.moe/user/api.php', true);
-
-      xhr.upload.onprogress = (e) => {
-        if (e.lengthComputable) {
-          const percent = Math.round((e.loaded / e.total) * 100);
-          progressBar.style.width = `${percent}%`;
-          uploadPercentText.textContent = `${percent}%`;
-          uploadStatusText.textContent = `Đang tải lên: ${formatBytes(e.loaded)} / ${formatBytes(e.total)}`;
-        }
-      };
-
-      xhr.onload = async () => {
-        if (xhr.status === 200) {
-          const catboxUrl = xhr.responseText.trim();
-          uploadStatusText.textContent = 'Lưu thông tin vào database...';
-
-          try {
-            // Save metadata to Firestore
-            const newDoc = {
-              title: title,
-              slug: slug,
-              catboxUrl: catboxUrl,
-              size: selectedFile.size,
-              createdAt: Date.now()
-            };
-
-            await addDoc(filesCollection, newDoc);
-
-            // Complete UI
-            const fullShareUrl = `${window.location.origin}${window.location.pathname}?file=${slug}`;
-            shareUrlOutput.value = fullShareUrl;
-            resultCard.classList.remove('hidden');
-            showToast('Tải lên thành công!');
-
-            // Reset form
-            selectedFile = null;
-            fileInput.value = '';
-            titleInput.value = '';
-            slugInput.value = '';
-            isUserEditingSlug = false;
-            selectedFileInfo.classList.add('hidden');
-            dropzoneDefault.classList.remove('hidden');
-            updateUrlPreview();
-
-          } catch (err) {
-            console.error('Firestore Error:', err);
-            showToast('Lỗi khi lưu dữ liệu: ' + err.message);
-          } finally {
-            uploadBtn.disabled = false;
-            progressContainer.classList.add('hidden');
-          }
-        } else {
-          showToast('Lỗi tải file lên Catbox: ' + xhr.statusText);
+      uploadTask.on('state_changed', 
+        (snapshot) => {
+          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          progressBar.style.width = `${progress}%`;
+          uploadPercentText.textContent = `${progress}%`;
+          uploadStatusText.textContent = `Đang tải: ${formatBytes(snapshot.bytesTransferred)} / ${formatBytes(snapshot.totalBytes)}`;
+        }, 
+        (error) => {
+          console.error("Storage Upload Error:", error);
+          showToast("Tải file thất bại: " + error.message);
           uploadBtn.disabled = false;
           progressContainer.classList.add('hidden');
+        }, 
+        async () => {
+          // Lấy URL Download công khai trực tiếp từ Firebase
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+          // Lưu metadata thông tin file vào Cloud Firestore
+          await addDoc(filesCollection, {
+            title: title,
+            slug: slug,
+            fileUrl: downloadURL,
+            size: selectedFile.size,
+            createdAt: Date.now()
+          });
+
+          const fullShareUrl = `${window.location.origin}${window.location.pathname}?file=${slug}`;
+          document.getElementById('shareUrlOutput').value = fullShareUrl;
+          document.getElementById('resultCard').classList.remove('hidden');
+          showToast('Tải file lên thành công!');
+
+          // Reset form UI
+          selectedFile = null;
+          fileInput.value = '';
+          titleInput.value = '';
+          slugInput.value = '';
+          isUserEditingSlug = false;
+          document.getElementById('selectedFileInfo').classList.add('hidden');
+          document.getElementById('dropzoneDefault').classList.remove('hidden');
+          uploadBtn.disabled = false;
+          progressContainer.classList.add('hidden');
+          updateUrlPreview();
         }
-      };
-
-      xhr.onerror = () => {
-        showToast('Lỗi kết nối mạng khi tải lên!');
-        uploadBtn.disabled = false;
-        progressContainer.classList.add('hidden');
-      };
-
-      xhr.send(formData);
+      );
     });
 
-    copyShareUrlBtn.addEventListener('click', () => {
-      copyToClipboard(shareUrlOutput.value);
+    document.getElementById('copyShareUrlBtn').addEventListener('click', () => {
+      copyToClipboard(document.getElementById('shareUrlOutput').value);
     });
 
-    const recentFilesContainer = document.getElementById('recentFilesContainer');
-    const searchInput = document.getElementById('searchInput');
-
-    // Realtime listener for files collection
+    // Realtime Listener dữ liệu Firestore
     onSnapshot(query(filesCollection), (snapshot) => {
       cachedFilesList = [];
-      snapshot.forEach((doc) => {
-        cachedFilesList.push({ id: doc.id, ...doc.data() });
-      });
-
-      // Sort by creation date descending in memory
+      snapshot.forEach((doc) => cachedFilesList.push({ id: doc.id, ...doc.data() }));
       cachedFilesList.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
-      renderRecentFilesList();
-    }, (error) => {
-      console.error("Firestore Listen Error:", error);
-      recentFilesContainer.innerHTML = `
-        <div class="col-span-full p-6 text-center text-rose-400 bg-rose-500/10 rounded-2xl border border-rose-500/20">
-          Không thể tải danh sách file: ${error.message}
-        </div>`;
-    });
-
-    searchInput.addEventListener('input', () => {
       renderRecentFilesList();
     });
+
+    document.getElementById('searchInput').addEventListener('input', renderRecentFilesList);
 
     function renderRecentFilesList() {
-      const searchTerm = searchInput.value.trim().toLowerCase();
+      const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
       const filtered = cachedFilesList.filter(item => 
         (item.title || '').toLowerCase().includes(searchTerm) || 
         (item.slug || '').toLowerCase().includes(searchTerm)
       );
 
-      if (filtered.length === 0) {
+      const recentFilesContainer = document.getElementById('recentFilesContainer');
+
+      if (!filtered.length) {
         recentFilesContainer.innerHTML = `
           <div class="col-span-full py-10 text-center text-gray-500">
             <i class="fa-regular fa-folder-open text-3xl mb-2 opacity-50"></i>
-            <p class="text-xs">Chưa tìm thấy file chia sẻ nào phù hợp.</p>
+            <p class="text-xs">Không tìm thấy file phù hợp.</p>
           </div>`;
         return;
       }
@@ -749,18 +593,14 @@
       recentFilesContainer.innerHTML = filtered.slice(0, 20).map(item => {
         const shareUrl = `${window.location.origin}${window.location.pathname}?file=${item.slug}`;
         const formattedDate = item.createdAt ? new Date(item.createdAt).toLocaleDateString('vi-VN') : 'Mới đây';
-        const iconClass = getFileIconClass(item.title);
-
         return `
           <div class="glass-panel p-4 rounded-2xl flex items-center justify-between gap-3 hover:border-purple-500/30 transition-all group">
             <div class="flex items-center gap-3 overflow-hidden">
-              <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                <i class="fa-solid ${iconClass} text-base"></i>
+              <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                <i class="fa-solid ${getFileIconClass(item.title)} text-base"></i>
               </div>
               <div class="truncate">
-                <h4 class="text-xs font-bold text-white truncate group-hover:text-purple-300 transition-colors" title="${item.title}">
-                  ${item.title}
-                </h4>
+                <h4 class="text-xs font-bold text-white truncate group-hover:text-purple-300 transition-colors">${item.title}</h4>
                 <div class="flex items-center gap-2 text-[10px] text-gray-400 mt-0.5">
                   <span>${formatBytes(item.size)}</span>
                   <span>•</span>
@@ -768,83 +608,60 @@
                 </div>
               </div>
             </div>
-
             <div class="flex items-center gap-1.5 shrink-0">
-              <button onclick="window.copyLink('${shareUrl}')" 
-                      class="p-2 text-gray-400 hover:text-cyan-300 hover:bg-cyan-500/10 rounded-lg transition-colors" title="Sao chép Link">
+              <button onclick="window.copyLink('${shareUrl}')" class="p-2 text-gray-400 hover:text-cyan-300 hover:bg-cyan-500/10 rounded-lg transition-colors">
                 <i class="fa-solid fa-copy text-xs"></i>
               </button>
-              <a href="${shareUrl}" target="_blank" 
-                 class="p-2 text-gray-400 hover:text-purple-300 hover:bg-purple-500/10 rounded-lg transition-colors" title="Mở trang tải">
+              <a href="${shareUrl}" target="_blank" class="p-2 text-gray-400 hover:text-purple-300 hover:bg-purple-500/10 rounded-lg transition-colors">
                 <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
               </a>
             </div>
-          </div>
-        `;
+          </div>`;
       }).join('');
     }
 
-    // Attach copy helper globally for HTML inline onclick
-    window.copyLink = (url) => {
-      copyToClipboard(url);
-    };
+    window.copyLink = (url) => copyToClipboard(url);
 
-    const uploadView = document.getElementById('uploadView');
-    const downloadView = document.getElementById('downloadView');
-    const downloadCardContent = document.getElementById('downloadCardContent');
-    const notFoundCard = document.getElementById('notFoundCard');
-
+    // Dynamic Routing
     async function handleRouting() {
       const urlParams = new URLSearchParams(window.location.search);
       const fileSlug = urlParams.get('file');
 
       if (fileSlug) {
-        // Show Download View
-        uploadView.classList.add('hidden');
-        downloadView.classList.remove('hidden');
+        document.getElementById('uploadView').classList.add('hidden');
+        document.getElementById('downloadView').classList.remove('hidden');
 
-        // Fetch documents from Firestore
         try {
           const snapshot = await getDocs(filesCollection);
           let targetFile = null;
-
           snapshot.forEach(doc => {
-            if (doc.data().slug === fileSlug) {
-              targetFile = doc.data();
-            }
+            if (doc.data().slug === fileSlug) targetFile = doc.data();
           });
 
           if (targetFile) {
-            // Populate Download UI
             document.getElementById('dlTitle').textContent = targetFile.title;
             document.getElementById('dlSize').textContent = formatBytes(targetFile.size);
             document.getElementById('dlDate').textContent = targetFile.createdAt ? new Date(targetFile.createdAt).toLocaleDateString('vi-VN') : 'Không rõ';
-            document.getElementById('dlDirectBtn').href = targetFile.catboxUrl;
-            
-            const iconClass = getFileIconClass(targetFile.title);
-            document.getElementById('dlFileExtensionIcon').className = `fa-solid ${iconClass} text-4xl sm:text-5xl`;
+            document.getElementById('dlDirectBtn').href = targetFile.fileUrl;
+            document.getElementById('dlFileExtensionIcon').className = `fa-solid ${getFileIconClass(targetFile.title)} text-4xl sm:text-5xl`;
 
-            downloadCardContent.classList.remove('hidden');
-            notFoundCard.classList.add('hidden');
+            document.getElementById('downloadCardContent').classList.remove('hidden');
+            document.getElementById('notFoundCard').classList.add('hidden');
           } else {
-            // Show 404
-            downloadCardContent.classList.add('hidden');
-            notFoundCard.classList.remove('hidden');
+            document.getElementById('downloadCardContent').classList.add('hidden');
+            document.getElementById('notFoundCard').classList.remove('hidden');
           }
         } catch (err) {
-          console.error("Routing Fetch Error:", err);
-          downloadCardContent.classList.add('hidden');
-          notFoundCard.classList.remove('hidden');
+          document.getElementById('downloadCardContent').classList.add('hidden');
+          document.getElementById('notFoundCard').classList.remove('hidden');
         }
       } else {
-        // Show Upload View
-        uploadView.classList.remove('hidden');
-        downloadView.classList.add('hidden');
+        document.getElementById('uploadView').classList.remove('hidden');
+        document.getElementById('downloadView').classList.add('hidden');
         updateUrlPreview();
       }
     }
 
-    // Return to home button
     document.getElementById('backToHomeBtn').addEventListener('click', () => {
       window.history.pushState({}, '', window.location.pathname);
       handleRouting();
@@ -856,7 +673,6 @@
       handleRouting();
     });
 
-    // Execute routing on startup
     window.addEventListener('load', handleRouting);
   </script>
 </body>

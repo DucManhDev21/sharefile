@@ -1,51 +1,51 @@
+import formidable from 'formidable';
+import fs from 'fs';
+import FormData from 'form-data';
+
 export const config = {
   api: {
-    bodyParser: false, // Tắt bodyParser mặc định để hỗ trợ stream file dung lượng lớn
+    bodyParser: false,
   },
 };
 
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Phương thức không được hỗ trợ' });
+    return res.status(405).json({ error: 'Method không hợp lệ' });
   }
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const form = formidable({});
 
-  if (!token || !chatId) {
-    return res.status(500).json({ 
-      error: 'Thiếu cấu hình TELEGRAM_BOT_TOKEN hoặc TELEGRAM_CHAT_ID trên Vercel Environment Variables.' 
-    });
-  }
+  form.parse(req, async (err, fields, files) => {
+    if (err) return res.status(500).json({ error: 'Lỗi đọc file tải lên' });
 
-  try {
-    // Forward dữ liệu file trực tiếp lên Telegram API
-    const response = await fetch(`https://api.telegram.org/bot${token}/sendDocument?chat_id=${chatId}`, {
-      method: 'POST',
-      headers: {
-        'content-type': req.headers['content-type'],
-      },
-      body: req,
-      duplex: 'half',
-    });
+    const file = files.document?.[0] || files.document;
+    if (!file) return res.status(400).json({ error: 'Không tìm thấy tệp gửi lên' });
 
-    const data = await response.json();
+    try {
+      const formData = new FormData();
+      formData.append('chat_id', CHAT_ID);
+      formData.append('document', fs.createReadStream(file.filepath), file.originalFilename);
 
-    if (data.ok) {
-      // Trả về file_id cố định vĩnh viễn
+      const telegramRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await telegramRes.json();
+      if (!data.ok) throw new Error(data.description || 'Lỗi gửi file lên Telegram');
+
+      const doc = data.result.document;
       return res.status(200).json({
         success: true,
-        fileId: data.result.document.file_id,
-        fileName: data.result.document.file_name,
-        fileSize: data.result.document.file_size,
+        fileId: doc.file_id,
+        fileName: doc.file_name,
+        fileSize: doc.file_size
       });
-    } else {
-      return res.status(400).json({ 
-        success: false, 
-        error: data.description || 'Không thể upload file lên Telegram.' 
-      });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
     }
-  } catch (error) {
-    return res.status(500).json({ success: false, error: error.message });
-  }
+  });
 }

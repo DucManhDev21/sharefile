@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TDM Share - Chia Sẻ & Tìm Kiếm File</title>
+    <title>TDM Share - Chia Sẻ & Tìm Kiếm File (Hỗ Trợ Tới 10GB)</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Firebase SDK (Compat Version cho Script nhúng) -->
+    <!-- Firebase SDK (Compat Version) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
@@ -88,10 +88,9 @@
     <!-- Toast Notifications -->
     <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
 
-    <!-- Header / Navbar + Hamburger Menu -->
+    <!-- Header / Navbar -->
     <header class="sticky top-0 z-40 w-full border-b border-gray-800/80 bg-gray-950/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Logo -->
             <a href="#" onclick="switchTab('public')" class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl gradient-btn flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-cyan-500/20">
                     <i class="fa-solid fa-cloud-arrow-up"></i>
@@ -99,29 +98,29 @@
                 <span class="text-xl font-bold gradient-text tracking-wide">TDM Share</span>
             </a>
 
-            <!-- Desktop Nav Menu -->
+            <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-2">
-                <button onclick="switchTab('upload')" id="navUploadDesktop" class="nav-link text-sm font-medium px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50">
-                    <i class="fa-solid fa-file-arrow-up text-cyan-400"></i> Up File
+                <button onclick="switchTab('upload')" id="navUploadDesktop" class="text-sm font-medium px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50">
+                    <i class="fa-solid fa-file-arrow-up text-cyan-400"></i> Up File Mới
                 </button>
-                <button onclick="switchTab('public')" id="navPublicDesktop" class="nav-link text-sm font-medium px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50">
-                    <i class="fa-solid fa-globe text-purple-400"></i> File Công Khai
+                <button onclick="switchTab('public')" id="navPublicDesktop" class="text-sm font-medium px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50">
+                    <i class="fa-solid fa-globe text-purple-400"></i> Kho File Công Khai
                 </button>
             </nav>
 
-            <!-- Hamburger Button (Mobile) -->
+            <!-- Mobile Hamburger Button -->
             <button id="hamburgerBtn" onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white p-2 rounded-lg bg-gray-900 border border-gray-800">
-                <i class="fa-solid fa-bars text-xl" id="hamburgerIcon"></i>
+                <i class="fa-solid fa-bars text-xl"></i>
             </button>
         </div>
 
         <!-- Mobile Drawer Menu -->
         <div id="mobileMenu" class="hidden md:hidden border-b border-gray-800 bg-gray-950/95 px-4 pt-2 pb-4 space-y-2">
             <button onclick="switchTab('upload'); toggleMobileMenu();" class="w-full text-left text-sm font-medium px-4 py-3 rounded-xl flex items-center gap-3 text-gray-200 hover:bg-gray-800">
-                <i class="fa-solid fa-file-arrow-up text-cyan-400 text-base"></i> Up File Mới
+                <i class="fa-solid fa-file-arrow-up text-cyan-400"></i> Up File Mới
             </button>
             <button onclick="switchTab('public'); toggleMobileMenu();" class="w-full text-left text-sm font-medium px-4 py-3 rounded-xl flex items-center gap-3 text-gray-200 hover:bg-gray-800">
-                <i class="fa-solid fa-globe text-purple-400 text-base"></i> Kho File Công Khai & Tìm Kiếm
+                <i class="fa-solid fa-globe text-purple-400"></i> Kho File Công Khai
             </button>
         </div>
     </header>
@@ -129,27 +128,25 @@
     <!-- Main Container -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- TAB 1: UP FILE -->
+        <!-- TAB 1: UP FILE (DIRECT PIXELDRAIN) -->
         <section id="tabUpload" class="hidden max-w-2xl mx-auto space-y-6">
             <div class="text-center space-y-2">
                 <h1 class="text-2xl sm:text-4xl font-extrabold">Tải File Lên <span class="gradient-text">Hệ Thống</span></h1>
-                <p class="text-xs sm:text-sm text-gray-400">File sau khi tải lên sẽ xuất hiện trong mục File Công Khai để ai cũng có thể tìm kiếm và tải về.</p>
+                <p class="text-xs sm:text-sm text-gray-400">Hỗ trợ tải lên file dung lượng lớn cực nhanh (Tối đa 10GB/file).</p>
             </div>
 
             <div class="glass-panel rounded-2xl p-6 sm:p-8 space-y-6">
                 <form id="uploadForm" class="space-y-5">
-                    <!-- Title Input -->
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-300">
-                            <i class="fa-solid fa-tag text-cyan-400 mr-2"></i>Tên File / Tên Tìm Kiếm
+                            <i class="fa-solid fa-tag text-cyan-400 mr-2"></i>Tên / Tiêu Đề Tìm Kiếm
                         </label>
                         <input type="text" id="customTitle" placeholder="Ví dụ: Mod Game Minecraft PE v1.20" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500" required>
                     </div>
 
-                    <!-- Dropzone -->
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-300">
-                            <i class="fa-solid fa-file-arrow-up text-cyan-400 mr-2"></i>Chọn Tệp
+                            <i class="fa-solid fa-file-arrow-up text-cyan-400 mr-2"></i>Chọn File Tải Lên
                         </label>
                         <div id="dropZone" class="border-2 border-dashed border-gray-700 hover:border-cyan-500 bg-gray-900/40 rounded-2xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-3">
                             <input type="file" id="fileInput" class="hidden" required>
@@ -158,7 +155,7 @@
                             </div>
                             <div>
                                 <p class="text-sm font-semibold text-gray-200" id="fileSelectText">Bấm vào đây hoặc kéo thả file</p>
-                                <p class="text-xs text-gray-500 mt-1" id="fileInfoText">Hỗ trợ dung lượng tới 2GB</p>
+                                <p class="text-xs text-cyan-400/80 mt-1" id="fileInfoText">Hỗ trợ dung lượng tới 10 GB / File</p>
                             </div>
                         </div>
                     </div>
@@ -169,8 +166,8 @@
                             <span class="text-cyan-400"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Đang tải lên đám mây...</span>
                             <span id="progressPercent" class="text-gray-300">0%</span>
                         </div>
-                        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-                            <div id="progressBar" class="bg-cyan-500 h-2 rounded-full transition-all w-0"></div>
+                        <div class="w-full bg-gray-800 rounded-full h-2.5 overflow-hidden">
+                            <div id="progressBar" class="bg-gradient-to-r from-cyan-500 to-purple-500 h-full transition-all w-0"></div>
                         </div>
                     </div>
 
@@ -181,7 +178,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: FILE CÔNG KHAI (TÌM KIẾM TOÀN HỆ THỐNG) -->
+        <!-- TAB 2: KHO FILE CÔNG KHAI -->
         <section id="tabPublic" class="space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
                 <div>
@@ -216,11 +213,11 @@
             <div id="emptyPublicState" class="hidden text-center py-12 glass-card rounded-2xl border border-gray-800">
                 <i class="fa-solid fa-magnifying-glass text-4xl text-gray-600 mb-3"></i>
                 <p class="text-gray-300 font-medium">Không tìm thấy file nào!</p>
-                <p class="text-xs text-gray-500 mt-1">Thử từ khóa khác hoặc chuyển sang mục "Up file" để chia sẻ file đầu tiên.</p>
+                <p class="text-xs text-gray-500 mt-1">Thử tìm từ khóa khác hoặc chuyển sang mục "Up File Mới".</p>
             </div>
         </section>
 
-        <!-- TAB 3: TRANG TẢI FILE TRỰC TIẾP (XEM TỪ LINK CHIA SẺ) -->
+        <!-- TAB 3: TRANG TẢI FILE CHIA SẺ -->
         <section id="tabDownload" class="hidden max-w-xl mx-auto my-auto">
             <div class="glass-panel rounded-3xl p-6 sm:p-10 space-y-6 text-center">
                 <button onclick="switchTab('public')" class="text-xs text-gray-400 hover:text-white flex items-center gap-2">
@@ -243,7 +240,7 @@
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-400">Tình trạng:</span>
-                        <span class="text-emerald-400 font-medium">Đã kiểm duyệt an toàn</span>
+                        <span class="text-emerald-400 font-medium">Sẵn sàng tải xuống</span>
                     </div>
                 </div>
 
@@ -263,12 +260,12 @@
 
     <!-- Footer -->
     <footer class="border-t border-gray-800 bg-gray-950 py-4 text-center text-xs text-gray-500">
-        © 2026 TDM Share Platform • Telegram Cloud & Firebase Firestore Storage
+        © 2026 TDM Share Platform • High Speed Cloud Storage
     </footer>
 
     <!-- JS Logic & Firebase Integration -->
     <script>
-        // --- 1. CẤU HÌNH FIREBASE VÀO HỆ THỐNG ---
+        // --- 1. CẤU HÌNH FIREBASE FIRESTORE ---
         const firebaseConfig = {
             apiKey: "AIzaSyDPaGLv7R3PrNbi_3OsT_1dcCnqLPPrLq0",
             authDomain: "tdmdev-1ea99.firebaseapp.com",
@@ -279,19 +276,16 @@
             measurementId: "G-H1MCY1SFSC"
         };
 
-        // Khởi tạo Firebase App & Services
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
         const db = firebase.firestore();
 
-        // Biến toàn cục
         let globalFilesList = [];
         let countdownTimer = null;
 
-        // --- 2. XỬ LÝ HAMBURGER MENU & TABS ---
+        // --- 2. XỬ LÝ MENU & TABS ---
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
         function switchTab(tabName) {
@@ -309,7 +303,7 @@
             }
         }
 
-        // --- 3. TẢI DANH SÁCH FILE CÔNG KHAI TỪ FIREBASE ---
+        // --- 3. TẢI DANH SÁCH FILE TỪ FIREBASE ---
         async function loadPublicFiles() {
             const grid = document.getElementById('publicFilesGrid');
             const loading = document.getElementById('loadingFiles');
@@ -329,9 +323,9 @@
                 loading.classList.add('hidden');
                 renderPublicFiles(globalFilesList);
             } catch (err) {
-                console.error("Lỗi lấy dữ liệu Firebase:", err);
+                console.error("Lỗi lấy dữ liệu:", err);
                 loading.classList.add('hidden');
-                showToast("Không thể tải danh sách file. Hãy kiểm tra Rules trên Firebase!", "error");
+                showToast("Không thể kết nối danh sách file. Hãy kiểm tra Firestore Rules!", "error");
             }
         }
 
@@ -348,7 +342,7 @@
             empty.classList.add('hidden');
             grid.innerHTML = files.map(file => {
                 const encoded = btoa(encodeURIComponent(JSON.stringify({
-                    id: file.fileId,
+                    url: file.fileUrl,
                     name: file.fileName,
                     size: file.fileSize,
                     title: file.title
@@ -386,7 +380,7 @@
             }).join('');
         }
 
-        // --- 4. Ô TÌM KIẾM TÊN FILE CÔNG KHAI ---
+        // --- 4. TÌM KIẾM TÊN FILE LIVE ---
         document.getElementById('globalSearchInput').addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             const filtered = globalFilesList.filter(f => 
@@ -396,7 +390,7 @@
             renderPublicFiles(filtered);
         });
 
-        // --- 5. TẢI FILE LÊN TELEGRAM & LƯU VÀO FIREBASE ---
+        // --- 5. UPLOAD TRỰC TIẾP LÊN PIXELDRAIN API VỚI PROGRESS REAL-TIME ---
         const dropZone = document.getElementById('dropZone');
         const fileInput = document.getElementById('fileInput');
 
@@ -410,7 +404,7 @@
             }
         });
 
-        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+        document.getElementById('uploadForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const file = fileInput.files[0];
             const title = document.getElementById('customTitle').value.trim();
@@ -424,46 +418,71 @@
 
             uploadBtn.disabled = true;
             progressWrapper.classList.remove('hidden');
-            progressBar.style.width = '50%';
-            progressPercent.textContent = '50%';
+            progressBar.style.width = '0%';
+            progressPercent.textContent = '0%';
 
-            try {
-                const formData = new FormData();
-                formData.append('document', file);
+            // Dùng XMLHttpRequest để lấy tiến trình upload thực tế %
+            const xhr = new XMLHttpRequest();
+            xhr.open('PUT', `https://pixeldrain.com/api/file/${encodeURIComponent(file.name)}`);
 
-                const res = await fetch('/api/upload', { method: 'POST', body: formData });
-                const data = await res.json();
-
-                if (data.success) {
-                    progressBar.style.width = '100%';
-                    progressPercent.textContent = '100%';
-
-                    // Lưu thông tin file vào Firestore
-                    await db.collection('shared_files').add({
-                        title: title,
-                        fileId: data.fileId,
-                        fileName: data.fileName,
-                        fileSize: data.fileSize,
-                        createdAt: new Date().toISOString()
-                    });
-
-                    showToast("Đã đăng file lên kho công khai thành công!", "success");
-
-                    document.getElementById('uploadForm').reset();
-                    progressWrapper.classList.add('hidden');
-                    uploadBtn.disabled = false;
-                    switchTab('public');
-                } else {
-                    throw new Error(data.error);
+            xhr.upload.onprogress = (event) => {
+                if (event.lengthComputable) {
+                    const percentComplete = Math.round((event.loaded / event.total) * 100);
+                    progressBar.style.width = percentComplete + '%';
+                    progressPercent.textContent = percentComplete + '%';
                 }
-            } catch (err) {
-                showToast("Lỗi: " + err.message, "error");
+            };
+
+            xhr.onload = async () => {
+                if (xhr.status === 200 || xhr.status === 201) {
+                    try {
+                        const res = JSON.parse(xhr.responseText);
+                        if (res.success) {
+                            const fileId = res.id;
+                            const directDownloadUrl = `https://pixeldrain.com/api/file/${fileId}`;
+
+                            // Lưu thông tin file vào Firestore
+                            await db.collection('shared_files').add({
+                                title: title,
+                                fileUrl: directDownloadUrl,
+                                pixeldrainId: fileId,
+                                fileName: file.name,
+                                fileSize: file.size,
+                                createdAt: new Date().toISOString()
+                            });
+
+                            showToast("Tải lên hệ thống thành công!", "success");
+
+                            document.getElementById('uploadForm').reset();
+                            document.getElementById('fileSelectText').textContent = "Bấm vào đây hoặc kéo thả file";
+                            progressWrapper.classList.add('hidden');
+                            uploadBtn.disabled = false;
+                            switchTab('public');
+                        } else {
+                            throw new Error("Pixeldrain từ chối tải file lên.");
+                        }
+                    } catch (err) {
+                        showToast("Lỗi lưu thông tin: " + err.message, "error");
+                        uploadBtn.disabled = false;
+                        progressWrapper.classList.add('hidden');
+                    }
+                } else {
+                    showToast("Lỗi tải file lên máy chủ (Status " + xhr.status + ")", "error");
+                    uploadBtn.disabled = false;
+                    progressWrapper.classList.add('hidden');
+                }
+            };
+
+            xhr.onerror = () => {
+                showToast("Lỗi kết nối mạng khi đang tải lên!", "error");
                 uploadBtn.disabled = false;
                 progressWrapper.classList.add('hidden');
-            }
+            };
+
+            xhr.send(file);
         });
 
-        // --- 6. XỬ LÝ ROUTE TẢI FILE DẠNG PARAM ---
+        // --- 6. XỬ LÝ LINK CHIA SẺ PARAM ---
         function checkUrlRoute() {
             const urlParams = new URLSearchParams(window.location.search);
             const rawData = urlParams.get('data');
@@ -495,7 +514,7 @@
                         if (sec <= 0) {
                             clearInterval(countdownTimer);
                             box.classList.add('hidden');
-                            btn.href = `/api/download?file_id=${fileInfo.id}`;
+                            btn.href = fileInfo.url;
                             btn.classList.remove('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
                             btnText.textContent = 'TẢI XUỐNG NGAY';
                         }
@@ -508,7 +527,7 @@
             }
         }
 
-        // Helper Utilities
+        // Helpers
         function formatBytes(bytes) {
             if (!bytes) return '0 Bytes';
             const k = 1024, sizes = ['Bytes', 'KB', 'MB', 'GB'];
@@ -522,7 +541,7 @@
 
         function copyLink(url) {
             navigator.clipboard.writeText(url);
-            showToast("Đã chép link tải!", "success");
+            showToast("Đã sao chép link chia sẻ!", "success");
         }
 
         function showToast(msg, type = 'info') {
